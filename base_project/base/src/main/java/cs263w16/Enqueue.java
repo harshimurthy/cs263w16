@@ -28,7 +28,7 @@ public class Enqueue extends HttpServlet {
         	response.sendRedirect("/Done.html");
         }
         catch(Exception e){
-        	response.getWriter().println("Sorry. Please fix the error: " + e.getMessage());
+        	response.getWriter().println("Fix error " + e.getMessage());
         }
     }
 }
