@@ -20,9 +20,11 @@ The project proposal is to design and develop a web application which acts as a 
 **Overview of design and plan**
 
 The application will include two main type of users. One, the students who only check the updates and events. Two, the people in charge of creating the events. Also, each user can sync with Google calendar and obtain notifications about the events during their free time.The plan is to first implement the basic functionalities and gradually update it to add advanced features.
+
 ---
 
-###Developer-Harshitha Chidananda ![Harshitha Chidananda](/calsync/src/main/webapp/images/harshitha.jpeg)
+###Developer-Harshitha Chidananda 
+![Harshitha Chidananda](/calsync/src/main/webapp/images/chidanandamurthy_harshitha.jpg)
 
 ---
 Required Documents
