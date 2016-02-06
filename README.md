@@ -24,7 +24,7 @@ The application will include two main type of users. One, the students who only 
 ---
 
 ###Developer-Harshitha Chidananda 
-![Harshitha Chidananda](/calsync/src/main/webapp/images/chidanandamurthy_harshitha.jpg)
+![Harshitha Chidananda](/calsync/src/main/webapp/images/chidanandamurthyharshitha.jpg)
 
 ---
 Required Documents
