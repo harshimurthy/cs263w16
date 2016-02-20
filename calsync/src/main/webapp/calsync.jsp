@@ -1,10 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.users.UserService" %>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
 
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
 <html class="no-js"><!--<![endif]--><head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8"><link href="stylesheets/css.css" rel="stylesheet" type="text/css"><style type="text/css">.gm-style .gm-style-cc span,.gm-style .gm-style-cc a,.gm-style .gm-style-mtc div{font-size:10px}</style><style type="text/css">@media print {  .gm-style .gmnoprint, .gmnoprint {    display:none  }}@media screen {  .gm-style .gmnoscreen, .gmnoscreen {    display:none  }}</style><style type="text/css">.gm-style{font-family:Roboto,Arial,sans-serif;font-size:11px;font-weight:400;text-decoration:none}.gm-style img{max-width:none}</style>
     <meta charset="utf-8">
@@ -89,8 +88,16 @@
 
                         </div>
 			<div class="page-scroll">
-                            <a href="" class="btn btn-lg btn-rj">Login</a>
+				<% 
+				UserService userService=UserServiceFactory.getUserService();
+				%>
+				<a href="<%=userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-lg btn-rj"></i>Login</a>
+<% User user = userService.getCurrentUser();
+if (user != null) {
+                                pageContext.setAttribute("user", user); }
+ %>
                         </div>
+
                         <!-- //.page-scroll -->
                     </div>
                     <!-- //.intro-content -->
@@ -147,9 +154,7 @@
                         <a href="#keep-in-touch">Code</a>
                     </li>
                     
-                    <li class="page-scroll">
-                        <a href="#">Login</a>
-                    </li>
+                   
                 </ul>
             </div>
             <!-- //.navbar-collapse -->
