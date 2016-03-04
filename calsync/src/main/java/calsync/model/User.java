@@ -1,11 +1,14 @@
 package calsync.model;
 
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-
+/**
+   * USER MODEL
+*/
 @XmlRootElement
 public class User{
 
@@ -16,18 +19,18 @@ public class User{
 		private String email;
 		private long id;
 
-
+		//default user constructor
 		public User(){
 
 		}
 
+		//Parameterized constructor
 		public User(String name, String address, String username, String email, long id) {
 		this.setName(name);
 		this.setAddress(address);
 		this.setUsername(username);
 		this.setEmail(email);
 		this.setId(id);
-
 		}
 
 		@XmlElement
