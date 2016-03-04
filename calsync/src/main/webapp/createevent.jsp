@@ -125,7 +125,9 @@ Event Information</br></br>
 	</select></td>
 </tr>
 
-<td><select name="student">
+<tr><td>Maximum allowed entries</td><td><input type="number" name="capacity"/></td></tr>
+
+<td><select name="purpose">
 		 <option value="official">Educational</option>
 		<option value="unofficial">Entertainment</option>
 		<option value="external">Others</option>

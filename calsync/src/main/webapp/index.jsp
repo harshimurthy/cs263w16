@@ -2,6 +2,9 @@
 <%@ page import="com.google.appengine.api.users.User" %>
 <%@ page import="com.google.appengine.api.users.UserService" %>
 <%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html class="no-js"><!--<![endif]--><head>
@@ -88,14 +91,25 @@
 
                         </div>
 			<div class="page-scroll">
-				<% 
-				UserService userService=UserServiceFactory.getUserService();
-				%>
-				<a href="<%=userService.createLoginURL(request.getRequestURI()) %>" class="btn btn-lg btn-rj"></i>Login</a>
-<% User user = userService.getCurrentUser();
-if (user != null) {
-                                pageContext.setAttribute("user", user); }
- %>
+
+
+            Hello      <%
+                            UserService userService = UserServiceFactory.getUserService();
+                           User user = userService.getCurrentUser();
+                            if (user != null) {
+                                pageContext.setAttribute("user", user);  }
+                            if(user==null){ 
+                            %>
+                            <a href="<%= userService.createLoginURL(request.getRequestURI()) %>">
+                                Login
+                           </a>
+                    <%
+                        
+            }
+
+                    %>
+				
+ 
                         </div>
 
                         <!-- //.page-scroll -->

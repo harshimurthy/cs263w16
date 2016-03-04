@@ -10,6 +10,8 @@
 
 <!DOCTYPE html>
 <body>
+
+
 		      Hello      <%
                             UserService userService = UserServiceFactory.getUserService();
                            User user = userService.getCurrentUser();
@@ -35,3 +37,5 @@ System.out.println(user); %>
 
                  </body>
 </html>
+
+-->
