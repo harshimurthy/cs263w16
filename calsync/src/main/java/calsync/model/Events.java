@@ -54,7 +54,7 @@ public class Events
 	@XmlElement
 	public void setEventTagline(String eventTagline)
 	{
-		eventTagline.eventTagline=eventTagline;
+		this.eventTagline=eventTagline;
 	}
 
 
@@ -150,21 +150,9 @@ public class Events
 	}
 
 	@XmlElement
-	public void setCapacity(String capacity)
+	public void setCapacity(int capacity)
 	{
 		this.capacity=capacity;
-	}
-
-	//purpose of the event - get and set
-	public String getPurpose()
-	{
-		return purpose;
-	}
-
-	@XmlElement
-	public void setPurpose(String purpose)
-	{
-		this.purpose=purpose;
 	}
 
 	//location of the event - get and set
