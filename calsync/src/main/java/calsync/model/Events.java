@@ -10,20 +10,21 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Events
 {
 	String eventName;
-	String startDate;
-	String startTime;
-	String endDate;
-	String endTime;
+	String eventTagline;
+	String eventDate;
+	String eventTime;
+	String duration;
 	String eventType;
 	String eventHost;
+	String purpose;
 	String department;
 	int capacity;
-	String purpose;
+	String location;	
 	String description;
 
 
 	String createrName;
-	String createrOrg;
+	String createrEmail;
 	String createrRole;
 
 
@@ -44,52 +45,54 @@ public class Events
 		this.eventName=eventName;
 	}
 
-	//Event startDate getters and setters
-	public String getStartDate()
+	//Event tagline get and set
+	public String getEventTagline()
 	{
-		return startDate;
+		return eventTagline;
 	}
 
 	@XmlElement
-	public void setStartDate(String startDate)
+	public void setEventTagline(String eventTagline)
 	{
-		this.startDate=startDate;
+		eventTagline.eventTagline=eventTagline;
+	}
+
+
+	//Event startDate getters and setters
+	public String getEventDate()
+	{
+		return eventDate;
+	}
+
+	@XmlElement
+	public void setEventDate(String eventDate)
+	{
+		this.eventDate=eventDate;
 	}
 
 	//Event startTime get and set
-	public String getStartTime()
+	public String getEventTime()
 	{
-		return startDate;
+		return eventTime;
 	}
 
 	@XmlElement
-	public void setStartTime(String startDate)
+	public void setEventTime(String eventTime)
 	{
-		this.startDate=startDate;
+		this.eventTime=eventTime;
 	}
 
-	//Event endDate get and set
-	public String getEndDate()
+	
+	//Event duration get and set
+	public String getDuration()
 	{
-		return endDate;
-	}
-
-	@XmlElement
-	public void setEndDate(String endDate)
-	{
-		this.endDate=endDate;
-	}
-
-	//Event endTime get and set
-	public String getEndTime()
-	{
-		return endDate;
+		return duration;
 	}
 
 	@XmlElement
-	public void setStartTime(String startDate)
+	public void setDuration(String duration)
 	{
-		this.startDate=startDate;
+		this.duration=duration;
 	}
 
 	//EventType get and set
@@ -116,6 +119,18 @@ public class Events
 		this.eventHost=eventHost;
 	}
 
+	//purpose get and set
+	public String getPurpose()
+	{
+		return purpose;
+	}
+
+	@XmlElement
+	public void setPurpose(String purpose)
+	{
+		this.purpose=purpose;
+	}
+
 	//department hosted by - get and set
 	public String getDepartment()
 	{
@@ -129,7 +144,7 @@ public class Events
 	}
 
 	//capacity hosted by - get and set
-	public String getCapacity()
+	public int getCapacity()
 	{
 		return capacity;
 	}
@@ -150,6 +165,18 @@ public class Events
 	public void setPurpose(String purpose)
 	{
 		this.purpose=purpose;
+	}
+
+	//location of the event - get and set
+	public String getLocation()
+	{
+		return location;
+	}
+
+	@XmlElement
+	public void seLocation(String location)
+	{
+		this.location=location;
 	}
 
 	//description of the event - get and set
@@ -182,15 +209,15 @@ public class Events
 	}
 
 	//Creater of event Organization- get and set
-	public String getCreaterOrg()
+	public String getCreaterEmail()
 	{
-		return createrOrg;
+		return createrEmail;
 	}
 
 	@XmlElement
-	public void setCreaterOrg(String createrOrg)
+	public void setCreaterEmail(String createrEmail)
 	{
-		this.createrOrg=createrOrg;
+		this.createrEmail=createrEmail;
 	}
 
 	//Creater of event Role- get and set
