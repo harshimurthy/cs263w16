@@ -26,21 +26,7 @@
         color:#e91e63;
       }
       </style>
-      <script>
-     $( document ).ready(function() {
-         $('.datepicker').pickadate({
-          format: 'mm/dd/yyyy',
-          selectMonths: true, // Creates a dropdown to control month
-          selectYears: 15 // Creates a dropdown of 15 years to control year
-        });
-
-         $('select').material_select();
-
-      
-    });
-    </script>
-
-   </head>
+     </head>
    <body>  
 
    <nav class="cyan darken-4">
@@ -326,7 +312,7 @@
            <div class="row">
            <div class="col s12 pinkcolor"> 
            <p class="center">
-            <button class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#e91e63">Submit
+            <button onclick="submitData()" class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#e91e63">Submit
               <i class="material-icons right">send</i>
             </button>
             </p>
@@ -367,5 +353,104 @@ Footer
             </div>
           </div>
         </footer>
+
+
+        <!-- 
+
+
+        Passing values to backend
+
+
+        -->
+        
+        <script type="text/javascript">
+
+        function submitData()
+        {
+        
+          var eventsData = {};
+          eventsData["eventName"] = $('#eventName')[0].value;
+          eventsData["eventTagline"] = $('#eventTagline')[0].value;
+          eventsData["eventDate"] = $('#eventDate')[0].value;
+          eventsData["eventTime"] = $('#eventTime')[0].value;
+          eventsData["duration"] = $('#duration')[0].value;
+          eventsData["eventType"] = $('#eventType')[0].value;
+          eventsData["eventHost"] = $('#eventHost')[0].value;
+          eventsData["purpose"] = $('#purpose')[0].value;
+          eventsData["department"] = $('#department')[0].value;
+          eventsData["capacity"] = $('#capacity')[0].value;
+          eventsData["location"] = $('#location')[0].value;
+          eventsData["description"] = $('#description')[0].value;
+
+          eventsData["createrName"] = $('#createrName')[0].value;
+          eventsData["createrEmail"] = $('#createrEmail')[0].value;
+          eventsData["createrRole"] = $('#createrRole')[0].value;
+
+          console.log(eventsData);
+        
+          
+          $.ajax({
+                //url: "https://"+window.location.host+"/rest/event/",
+                url: "/rest/events",
+                type: "POST",
+                data: JSON.stringify(eventsData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function()
+                {
+                    alert("Yeh!!Your event was successfully created");
+                }
+              })
+    
+        }
+
+        $( document ).ready(function() 
+        {
+                 $('.datepicker').pickadate({
+                  format: 'mm/dd/yyyy',
+                  selectMonths: true, // Creates a dropdown to control month
+                  selectYears: 15 // Creates a dropdown of 15 years to control year
+                });
+
+                 $('select').material_select();
+
+              
+        
+
+        $.ajax({
+          url:"/rest/events",
+          type:'GET',
+          dataType:"json",
+          success: function(data)
+          {
+            var i;
+            for(i=0;i<data.length;j++)
+            {
+              var myEvents=data[i];
+              var eventName=myEvents["eventName"];
+              var eventTagline=myEvents["eventTagline"];
+              var eventDate=myEvents["eventDate"];
+              var eventTime=myEvents["eventTime"];
+              var duration=myEvents["duration"];
+              var eventType=myEvents["eventType"];
+              var eventHost=myEvents["eventHost"];
+              var purpose=myEvents["purpose"];
+              var department=myEvents["department"];
+              var capacity=myEvents["capacity"];
+              var location=myEvents["location"];
+              var description=myEvents["description"];
+              var createrName=myEvents["createrName"];
+              var createrEmail=myEvents["createrEmail"];
+              var createrRole=myEvents["createrRole"];
+            }
+
+          }
+
+
+        })
+        });
+        </script>
+
+
    </body>   
 </html>

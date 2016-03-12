@@ -27,6 +27,8 @@ public class Events
 	String createrEmail;
 	String createrRole;
 
+	String ownerId;
+
 
 	public Events()
 	{
@@ -218,6 +220,15 @@ public class Events
 	public void setCreaterRole(String createrRole)
 	{
 		this.createrRole=createrRole;
+	}
+
+	//setting owner id
+	public String getOwnerId() {
+		return ownerId;
+	}
+	@XmlElement
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 
 
