@@ -47,12 +47,19 @@
     <div class="nav-wrapper container">
       <a href="#" class="brand-logo" style="font-family:'Tangerine';font-size: 50px">Eventize!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li> 
+      <%
+      UserService userService = UserServiceFactory.getUserService();
+      User user = userService.getCurrentUser();
+      //if (user != null) 
+        //resp.getWriter().println("Welcome, " + user.getNickname());
+      %>
+      </li>
         <li><a href="#"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
         <li><a href="#"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
         <li><a href="#"><i class="material-icons left">class</i>My events<br/><i class="material-icons prefix center">class</i><br/><br/>View events I intend to go</a></li>
         <%
-        UserService userService = UserServiceFactory.getUserService();
-                           User user = userService.getCurrentUser();
+        
                            if(user==null)
                          response.sendRedirect("index.jsp");
         if(user!=null)

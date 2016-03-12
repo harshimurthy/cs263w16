@@ -39,7 +39,7 @@
     height: 100%;
     z-index: 1;
     opacity: 0.6;
-    background-image: url('images/ucsb1.jpg');
+    background-image: url('images/ucsb2.jpg');
     background-repeat: no-repeat;
     background-position: 50% 0;
     -ms-background-size: cover;
@@ -60,12 +60,13 @@
        <div class="row cyan darken-4 center" >
         <div class="col s12 m12 l12">
         <a href="#" class="brand-logo" style="font-family:'Tangerine';font-size: 50px;color:white">Eventize!</a>
+        <p>-Make things Happen!</p>
         </div>
       </div>
 
       <div class="row center">
         <div class="col s12 m12 l12">
-        <p style="font-family:'Tangerine';font-size: 50px;color:#004d40;font-weight: bolder; ">Responsive Multi-Purpose Application for keeping track of all the events at your University</p>
+        <p style="font-family:'Tangerine';font-size: 50px;color:white ;font-weight: bolder; ">Responsive Multi-Purpose Application for keeping track of all the events at your University</p>
         </div>
       </div>
 
