@@ -1,3 +1,10 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="com.google.appengine.api.users.User" %>
+<%@ page import="com.google.appengine.api.users.UserService" %>
+<%@ page import="com.google.appengine.api.users.UserServiceFactory" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
    <head>
       <title>Eventize</title>
@@ -43,7 +50,12 @@
         <li><a href="#"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
         <li><a href="#"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
         <li><a href="#"><i class="material-icons left">class</i>My events<br/><i class="material-icons prefix center">class</i><br/><br/>View events I intend to go</a></li>
-        <li><a href="#"><i class="material-icons left">call_made</i>Signout</a></li>
+        <%
+        UserService userService = UserServiceFactory.getUserService();
+                           User user = userService.getCurrentUser();
+        if(user!=null)
+        %> 
+                         <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"><i class="material-icons left">call_made</i>Signout</a></li>
       </ul>
     </div>
   </nav>
@@ -81,13 +93,13 @@
 
                <div class="input-field col s4">
                   <i class="material-icons prefix greencolor">alarm_on</i>
-                  <input type="text" class="timepicker" placeholder="Event Time" id="eventDate" class="validate"/>
+                  <input type="text" class="timepicker" placeholder="Event Time" id="eventTime" class="validate"/>
                   <label for="time">Event Time</label>
                </div>
                         
                <div class="input-field col s4">
                   <i class="material-icons prefix greencolor">add_alert</i>
-                  <input placeholder="Duration" id="Duration" type="text" class="validate">
+                  <input placeholder="Duration" id="duration" type="text" class="validate">
                   <label for="email">Duration (Ex: 2 hours, 40 mins , 2.5 hours)</label>
                </div>
             </div>
@@ -137,7 +149,7 @@
             <div class="row">
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">work</i>
-                  <select name="dept">
+                  <select name="department">
                           <option value="" disabled selected>          Choose your option</option>
                           <option value="NA">Not Applicable</option>
                           <option value="ANTH ">Anthropology                             - ANTH </option>
@@ -231,7 +243,7 @@
                <div class="input-field col s12">
                     <i class="material-icons prefix pink-icon greencolor">recent_actors</i>
                     <p class="range-field">
-                           <input type="range" id="test5" min="0" max="1000" />
+                           <input type="range" id="capacity" min="0" max="1000" />
                      </p>
 
                      <label>Maximum Number of People allowed</label>
@@ -247,8 +259,8 @@
 
           <div class="input-field col s6">
             <i class="material-icons prefix greencolor">description</i>
-            <textarea id="textarea1" class="materialize-textarea" length="120"></textarea>
-            <label for="textarea1">Description about the event</label>
+            <textarea id="description" class="materialize-textarea" length="120"></textarea>
+            <label for="description">Description about the event</label>
           </div>
         </div>
 
@@ -266,12 +278,12 @@
           <div class="row">
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">account_circle</i>
-                  <input placeholder="Your Name<" value="Mahesh" id="name" type="text" class="active validate" required>
+                  <input placeholder="Your Name<" value="Mahesh" id="createrName" type="text" class="active validate" required>
                   <label for="name">Your Name</label>
                </div>
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">email</i>
-                  <input placeholder="Email" id="email" type="email" class="validate">
+                  <input placeholder="Email" id="createrEmailemail" type="email" class="validate">
                   <label for="email">Email</label>
                </div>
             </div>
