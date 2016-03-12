@@ -156,7 +156,7 @@ public class EventsResource {
 		eventsEntity.setProperty("createrName", events.getCreaterName());
 		eventsEntity.setProperty("createrEmail", events.getCreaterEmail());
 		eventsEntity.setProperty("createrRole", events.getCreaterRole());
-
+		if(userService.getCurrentUser()!=null)
 		eventsEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());
 		datastore.put(eventsEntity);
 		

@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
-public class Events
+public class MyEvents
 {
 	String eventName;
 	String eventTagline;
@@ -30,7 +30,7 @@ public class Events
 	String ownerId;
 
 
-	public Events()
+	public MyEvents()
 	{
 
 	}
