@@ -7,7 +7,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
    <head>
-      <title>Eventize</title>
+      <title>Eventize!</title>
 	  <meta name="viewport" content="width=device-width, initial-scale=1">      
 	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
@@ -53,9 +53,14 @@
         <%
         UserService userService = UserServiceFactory.getUserService();
                            User user = userService.getCurrentUser();
+                           if(user==null)
+                         response.sendRedirect("index.jsp");
         if(user!=null)
         %> 
-                         <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"><i class="material-icons left">call_made</i>Signout</a></li>
+                         <li><a href="<%= userService.createLogoutURL(request.getRequestURI()) %>"><i class="material-icons left">call_made</i>Signout</a>
+                       
+
+                         </li>
       </ul>
     </div>
   </nav>
