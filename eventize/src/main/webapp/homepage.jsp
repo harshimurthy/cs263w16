@@ -48,7 +48,8 @@
       </li>
         <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
         <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
-        <li><a href="#"><i class="material-icons left">class</i>My events<br/><i class="material-icons prefix center">class</i><br/><br/>View events I intend to go</a></li>
+        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story<br/><i class="material-icons prefix center">class</i><br/><br/>Story I want to write</a></li>
+        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories<br/><i class="material-icons prefix center">class</i><br/><br/>Stories of UCSB</a></li>
         <%
         
                            if(user==null)
@@ -405,7 +406,7 @@ Footer
         
           
           $.ajax({
-                //url: "https://"+window.location.host+"/rest/event/",
+               
                 url: "/rest/events",
                 type: "POST",
                 data: JSON.stringify(eventsData),
@@ -427,9 +428,7 @@ Footer
                   selectYears: 15 // Creates a dropdown of 15 years to control year
                 });
 
-                 $('select').material_select();
-
-              
+                 $('select').material_select();             
         
         });
         </script>

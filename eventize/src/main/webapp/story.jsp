@@ -7,10 +7,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
    <head>
+
       <title>Eventize!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
+      <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+       
+
+	  <meta name="viewport" content="width=device-width, initial-scale=1">      
+	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>           
       <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/js/materialize.min.js"></script> 
@@ -25,7 +30,6 @@
       {
         color:#e91e63;
       }
-
       </style>
      </head>
    <body>  
@@ -60,50 +64,59 @@
     </div>
   </nav>
 
-  <!--
-
-  Body
-
-  -->
-
-  <div class="row container">
+      <div class="row container">
         <div class="row">
           <div class="col s12 center">
             <p>
-            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> View Information of all events</h5>
+            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> Write a story related to UCSB</h5>
             </p>
             </div>
+          </div>         
+      </div>
+
+      <div class="row container">
+        <form>
+
+        <div class="row">
+          <div class="input-field col s12">
+          <i class="material-icons prefix pinkcolor">view_list</i>
+          <input type="text" class="validate" id="title" required>
+          <label for="icon_prefix">Title of your Story</label>          
           </div>
         </div>
 
+        <div class="row">
+          <div class="input-field col s12">
+          <i class="material-icons prefix pinkcolor">textsms</i>
+          <input type="text" class="validate" id="about" required>
+          <label for="icon_prefix">What is your story about?</label>          
+          </div>
+        </div>
 
-        <table class="striped responsive-table teal lighten-3" id="viewtable">
-        <thead>
-    
-          <tr>
-              <th data-field="eventName">Event Name</th>
-              <th data-field="eventTagline">Event Tagline</th>
-              <th data-field="eventDate">Date</th>
-              <th data-field="eventTime">Time</th>
-              <th data-field="duration">Duration</th>
-              <th data-field="eventType">Type</th>
-              <th data-field="eventHost">Host</th>
-              <th data-field="purpose">Purpose</th>
-              <th data-field="department">Department</th>
-              <th data-field="capacity">Capacity</th>
-              <th data-field="location">Location</th>
-              <th data-field="description">Description</th>
-              <th data-field="createrName">Creater Name</th>
-              <th data-field="createrEmail">Creater Email</th>
-              <th data-field="createrRole">Creater Role</th>
-          </tr>
-        </thead>
+        <div class="row">
+          <div class="input-field col s12">
+            <i class="material-icons prefix pinkcolor">mode_edit</i>
+            <textarea class="materialize-textarea" id="tale" cols="100" required></textarea>
+            <label for="icon_prefix2">Write your story</label>
+          </div>
+        </div>
 
-        
-      </table>
+        <hr class="pinkcolor"/>
 
-      
-<!--
+        <div class="row">
+        <div class="col s12 pinkcolor center">
+        <button onclick="submitData()" class="btn waves-effect waves-light" type="submit" name="action" >Submit
+          <i class="material-icons right ">send</i>
+        </button>
+        </div>
+        </div>
+
+
+      </form>
+    </div>
+
+
+      <!--
 
 Footer
 
@@ -136,6 +149,7 @@ Footer
         </footer>
 
 
+
         <!-- 
 
 
@@ -146,13 +160,35 @@ Footer
         
         <script type="text/javascript">
 
+        function submitData()
+        {
         
+          var storiesData = {};
+          storiesData["title"] = $('#title')[0].value;
+          storiesData["about"] = $('#about')[0].value;          
+          storiesData["tale"] = $('#tale')[0].value;
+    
+          
+          $.ajax({
+                url: "/rest/stories",
+                type: "POST",
+                data: JSON.stringify(storiesData),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function()
+                {
+                    alert("Yeh!!Your event was successfully created");
+                }
+              })
+    
+        }
+
         $( document ).ready(function() 
         {
-                       
+                 $('select').material_select();   
 
-        $.ajax({
-          url:"/rest/events",
+                 $.ajax({
+          url:"/rest/stories",
           type:'GET',
           dataType:"json",
           success: function(data)
@@ -160,38 +196,14 @@ Footer
             var i;
             for(i=0;i<data.length;i++)
             {
-              var myEvents=data[i];
-              var eventName=myEvents["eventName"];
-              var eventTagline=myEvents["eventTagline"];
-              
-              var eventDate=myEvents["eventDate"];
-              var eventTime=myEvents["eventTime"];
-              var duration=myEvents["duration"];
-              
-              var eventType=myEvents["eventType"];
-              
-              var eventHost=myEvents["eventHost"];
-              var purpose=myEvents["purpose"];
-              var department=myEvents["department"];
-              
-              var capacity=myEvents["capacity"];
-              var location=myEvents["location"];
-              var description=myEvents["description"];
-              var createrName=myEvents["createrName"];
-              var createrEmail=myEvents["createrEmail"];
-              var createrRole=myEvents["createrRole"];
-
-                              $('#viewtable').append('<tbody><tr><td>' + eventName+ '</td>' + '<td>' + eventTagline + '</td>' + '<td>' + eventDate+ '</td>'+ '<td>' + eventTime + '</td>' + '<td>' + duration + '</td>' +'<td>'+ eventType+ '</td>'+ '<td>'+ eventHost+ '</td>'+ '<td>'+ purpose+ '</td>'+ '<td>'+ department+ '</td>'+ '<td>'+capacity + '</td>'+ '<td>'+ location+ '</td>'+ '<td>'+ description+ '</td>'+ '<td>'+ createrName+ '</td>'+ '<td>'+ createrEmail+ '</td>'+ '<td>'+createrRole + '</td></tr></tbody>');
-                
-
-              
-              
+              var myStories=data[i];
+              var title=myStories["title"];
+              var about=myStories["about"];
+              var tale=myStories["tale"];
             }
-
           }
-
-
-        })
+        });
+        
         });
         </script>
 

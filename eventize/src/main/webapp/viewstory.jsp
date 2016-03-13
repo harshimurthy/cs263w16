@@ -77,29 +77,15 @@
         </div>
 
 
-        <table class="striped responsive-table teal lighten-3" id="viewtable">
+        <table class="striped responsive-table" id="viewtable">
         <thead>
     
           <tr>
-              <th data-field="eventName">Event Name</th>
-              <th data-field="eventTagline">Event Tagline</th>
-              <th data-field="eventDate">Date</th>
-              <th data-field="eventTime">Time</th>
-              <th data-field="duration">Duration</th>
-              <th data-field="eventType">Type</th>
-              <th data-field="eventHost">Host</th>
-              <th data-field="purpose">Purpose</th>
-              <th data-field="department">Department</th>
-              <th data-field="capacity">Capacity</th>
-              <th data-field="location">Location</th>
-              <th data-field="description">Description</th>
-              <th data-field="createrName">Creater Name</th>
-              <th data-field="createrEmail">Creater Email</th>
-              <th data-field="createrRole">Creater Role</th>
+              <th data-field="title">Title</th>
+              <th data-field="about">About</th>
+              <th data-field="tale">Story</th>
           </tr>
-        </thead>
-
-        
+        </thead>        
       </table>
 
       
@@ -152,7 +138,7 @@ Footer
                        
 
         $.ajax({
-          url:"/rest/events",
+          url:"/rest/stories",
           type:'GET',
           dataType:"json",
           success: function(data)
@@ -160,37 +146,13 @@ Footer
             var i;
             for(i=0;i<data.length;i++)
             {
-              var myEvents=data[i];
-              var eventName=myEvents["eventName"];
-              var eventTagline=myEvents["eventTagline"];
-              
-              var eventDate=myEvents["eventDate"];
-              var eventTime=myEvents["eventTime"];
-              var duration=myEvents["duration"];
-              
-              var eventType=myEvents["eventType"];
-              
-              var eventHost=myEvents["eventHost"];
-              var purpose=myEvents["purpose"];
-              var department=myEvents["department"];
-              
-              var capacity=myEvents["capacity"];
-              var location=myEvents["location"];
-              var description=myEvents["description"];
-              var createrName=myEvents["createrName"];
-              var createrEmail=myEvents["createrEmail"];
-              var createrRole=myEvents["createrRole"];
-
-                              $('#viewtable').append('<tbody><tr><td>' + eventName+ '</td>' + '<td>' + eventTagline + '</td>' + '<td>' + eventDate+ '</td>'+ '<td>' + eventTime + '</td>' + '<td>' + duration + '</td>' +'<td>'+ eventType+ '</td>'+ '<td>'+ eventHost+ '</td>'+ '<td>'+ purpose+ '</td>'+ '<td>'+ department+ '</td>'+ '<td>'+capacity + '</td>'+ '<td>'+ location+ '</td>'+ '<td>'+ description+ '</td>'+ '<td>'+ createrName+ '</td>'+ '<td>'+ createrEmail+ '</td>'+ '<td>'+createrRole + '</td></tr></tbody>');
-                
-
-              
-              
+              var myStories=data[i];
+              var title=myStories["title"];
+              var about=myStories["about"];
+              var tale=myStories["tale"];
+              $('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
             }
-
           }
-
-
         })
         });
         </script>
