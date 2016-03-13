@@ -51,24 +51,46 @@ public class StoriesResource {
 	DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 	UserService userService = UserServiceFactory.getUserService();
 
+	//memcache
+	MemcacheService syncCache = MemcacheServiceFactory.getMemcacheService();
+
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public ArrayList<Stories> getStories()
 	{		
-			ArrayList<Stories> stories= new ArrayList<Stories>();
+			ArrayList<Stories> stories;
 			Stories story;
 			Query q = new Query("STORIES");
 			PreparedQuery pq = datastore.prepare(q);
-			for (Entity storiesEntity : pq.asIterable()) 
-			{
-				story = new Stories();			
-				story.setTitle((String)storiesEntity.getProperty("title"));
+			String CACHE_KEY="ALL_STORIES";
+			stories=(ArrayList<Stories>)syncCache.get(CACHE_KEY);
 
-				story.setAbout((String)storiesEntity.getProperty("about"));
-				story.setTale((String)storiesEntity.getProperty("tale"));				
-				stories.add(story);
+			if(stories==null)
+			{
+				stories= new ArrayList<Stories>();
+				for (Entity storiesEntity : pq.asIterable()) 
+				{
+					story = new Stories();			
+					story.setTitle((String)storiesEntity.getProperty("title"));
+					story.setAbout((String)storiesEntity.getProperty("about"));
+					story.setTale((String)storiesEntity.getProperty("tale"));				
+					stories.add(story);
+				}
+				syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(90));
 			}
 			return stories;
+	}
+
+	@GET
+	@Path("/MemcacheGet")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Stories> getAllStories()
+	{
+		System.out.println("came to memcache get");
+		ArrayList<Stories> stories;
+		String CACHE_KEY="ALL_STORIES";
+		stories=(ArrayList<Stories>) syncCache.get(CACHE_KEY);
+		return stories;
 	}
 
 	@POST
@@ -76,11 +98,30 @@ public class StoriesResource {
 	public void createStories(Stories stories) {	
 
 		Entity storiesEntity = new Entity("STORIES");
+		String CACHE_KEY="STORIES";
 		storiesEntity.setProperty("title", stories.getTitle());
 		storiesEntity.setProperty("about", stories.getAbout());
 		storiesEntity.setProperty("tale", stories.getTale());			
 		datastore.put(storiesEntity);
+		syncCache.put(CACHE_KEY,stories);
 		
+	}
+
+	@POST
+	@Path("/MemcachePost")
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void addStoriesToCache(Stories story)
+	{
+		String CACHE_KEY="ALL_STORIES";
+		ArrayList<Stories> stories;
+		stories=(ArrayList<Stories>) syncCache.get(CACHE_KEY);
+		if(stories==null)
+		{
+			stories=new ArrayList<Stories>();
+		}
+		stories.add(story);
+		System.out.println("came to get memcache! "+stories.size());
+		syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(90));
 	}
 }
 

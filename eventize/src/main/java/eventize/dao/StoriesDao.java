@@ -14,6 +14,14 @@ import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.Filter;
 import com.google.appengine.api.datastore.Query.FilterOperator;
 import com.google.appengine.api.datastore.Query.FilterPredicate;
+
+import java.util.logging.Level;
+
+import com.google.appengine.api.memcache.MemcacheService;
+import com.google.appengine.api.memcache.MemcacheServiceFactory;
+import com.google.appengine.api.memcache.ErrorHandlers;
+import com.google.appengine.api.memcache.Expiration;
+
 import eventize.model.Stories;
 
 
@@ -22,9 +30,13 @@ public class StoriesDao {
 	
 	private static DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();;
 	public static String STORIES_KIND = "STORIES";
+	private MemcacheService syncCache;
+	private Expiration fiveMinutes;
 	
 	
 	public StoriesDao(){
+		syncCache = MemcacheServiceFactory.getMemcacheService();
+		syncCache.setErrorHandler(ErrorHandlers.getConsistentLogAndContinue(Level.INFO));
 		
 	}
 	

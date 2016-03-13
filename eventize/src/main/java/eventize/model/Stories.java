@@ -6,9 +6,15 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.util.Date;
+
+import java.io.Serializable;
+
+
 @XmlRootElement
-public class Stories
+public class Stories implements Serializable
 {
+	private static final long serialVersionUID = 1L;
 	String title;
 	String about;
 	String tale;
