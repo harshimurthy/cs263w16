@@ -27,6 +27,8 @@ public class Events
 	String createrEmail;
 	String createrRole;
 
+	//String TId;
+
 
 	public Events()
 	{
@@ -220,5 +222,14 @@ public class Events
 	{
 		this.createrRole=createrRole;
 	}
+/*
+	public String TId() {
+		return TId;
+	}
+	@XmlElement
+	public void TId(String TId) {
+		this.TId = TId;
+	}
+	*/
 	
 }

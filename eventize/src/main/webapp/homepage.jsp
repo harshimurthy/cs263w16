@@ -7,7 +7,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
    <head>
+
       <title>Eventize!</title>
+      <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+       
+
 	  <meta name="viewport" content="width=device-width, initial-scale=1">      
 	  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
@@ -41,8 +46,8 @@
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="#"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
-        <li><a href="#"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
+        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
+        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
         <li><a href="#"><i class="material-icons left">class</i>My events<br/><i class="material-icons prefix center">class</i><br/><br/>View events I intend to go</a></li>
         <%
         
@@ -71,14 +76,14 @@
             <div class="row">
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">turned_in</i>
-                  <input placeholder="Event Name" id="eventName" type="text" class="validate">
+                  <input placeholder="Event Name" id="eventName" type="text" class="validate" required>
                   <label for="email">Event name</label>
                </div>
 
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor ">view_day</i>
                   <input placeholder="Event tagline" id="eventTagline" type="text" class="validate">
-                  <label for="email">Event tagline</label>
+                  <label for="tagline">Event tagline</label>
                </div>
             </div>
 
@@ -91,13 +96,13 @@
 
                <div class="input-field col s4">
                   <i class="material-icons prefix greencolor">alarm_on</i>
-                  <input type="text" class="timepicker" placeholder="Event Time" id="eventTime" class="validate"/>
+                  <input type="text" class="timepicker" placeholder="Event Time" id="eventTime" class="validate" required/>
                   <label for="time">Event Time</label>
                </div>
                         
                <div class="input-field col s4">
                   <i class="material-icons prefix greencolor">add_alert</i>
-                  <input placeholder="Duration" id="duration" type="text" class="validate">
+                  <input placeholder="Duration" id="duration" type="text" class="validate" required>
                   <label for="email">Duration (Ex: 2 hours, 40 mins , 2.5 hours)</label>
                </div>
             </div>
@@ -240,7 +245,7 @@
             <div class="row">
                <div class="input-field col s12">
                     <i class="material-icons prefix pink-icon greencolor">recent_actors</i>
-                     <input placeholder="Maximum Number of People allowed" id="capacity" type="text" class="validate">
+                     <input placeholder="Maximum Number of People allowed" id="capacity" type="text" class="validate" required>
                   <label for="capacity">Maximum Number of People allowed</label>                   
                  
 
@@ -251,7 +256,7 @@
             <div class="row">
             <div class="input-field col s6">
             <i class="material-icons prefix greencolor">location_on</i>
-            <textarea id="location" class="materialize-textarea" length="120"></textarea>
+            <textarea id="location" class="materialize-textarea" length="120" required></textarea>
             <label for="location">Location of the event</label>
           </div>
 
@@ -281,7 +286,7 @@
                </div>
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">email</i>
-                  <input placeholder="Email" id="createrEmail" type="email" class="validate">
+                  <input placeholder="Email" id="createrEmail" type="email" class="validate" required>
                   <label for="email">Email</label>
                </div>
             </div>
@@ -338,8 +343,8 @@ Footer
               <div class="col l4 offset-l2 s12 right">
                 <h5 class="grey-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Create</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">View</a></li>
+                  <li><a class="grey-text text-lighten-3" href="homepage.jsp">Create</a></li>
+                  <li><a class="grey-text text-lighten-3" href="view.jsp">View</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Events</a></li>
                   <li><a class="grey-text text-lighten-3" href="#!">Signout</a></li>
                 </ul>
@@ -426,45 +431,6 @@ Footer
 
               
         
-
-        $.ajax({
-          url:"/rest/events",
-          type:'GET',
-          dataType:"json",
-          success: function(data)
-          {
-            var i;
-            for(i=0;i<data.length;i++)
-            {
-              var myEvents=data[i];
-              var eventName=myEvents["eventName"];
-              var eventTagline=myEvents["eventTagline"];
-              
-              var eventDate=myEvents["eventDate"];
-              var eventTime=myEvents["eventTime"];
-              var duration=myEvents["duration"];
-              
-              var eventType=myEvents["eventType"];
-              
-              var eventHost=myEvents["eventHost"];
-              var purpose=myEvents["purpose"];
-              var department=myEvents["department"];
-              
-              var capacity=myEvents["capacity"];
-              var location=myEvents["location"];
-              var description=myEvents["description"];
-              var createrName=myEvents["createrName"];
-              var createrEmail=myEvents["createrEmail"];
-              var createrRole=myEvents["createrRole"];
-
-              
-              
-            }
-
-          }
-
-
-        })
         });
         </script>
 
