@@ -64,7 +64,28 @@ public class EventsResource {
 			{
 				event = new Events();			
 				event.setEventName((String)eventsEntity.getProperty("eventName"));
-				event.setEventTagline((String)eventsEntity.getProperty("eventTagline"));						
+				event.setEventTagline((String)eventsEntity.getProperty("eventTagline"));
+
+				event.setEventDate((String)eventsEntity.getProperty("eventDate"));
+				
+				event.setEventTime((String)eventsEntity.getProperty("eventTime"));
+				event.setDuration((String)eventsEntity.getProperty("duration"));
+
+				
+				event.setEventType((String)eventsEntity.getProperty("eventType"));
+				
+				event.setEventHost((String)eventsEntity.getProperty("eventHost"));
+				event.setPurpose((String)eventsEntity.getProperty("purpose"));
+				event.setDepartment((String)eventsEntity.getProperty("department"));
+				event.setCapacity((String)eventsEntity.getProperty("capacity"));				
+				event.setLocation((String)eventsEntity.getProperty("location"));				
+				event.setDescription((String)eventsEntity.getProperty("description"));
+
+				event.setCreaterName((String)eventsEntity.getProperty("createrName"));
+				event.setCreaterEmail((String)eventsEntity.getProperty("createrEmail"));
+				event.setCreaterRole((String)eventsEntity.getProperty("createrRole"));	
+				
+
 				events.add(event);
 			}
 			return events;
@@ -78,6 +99,25 @@ public class EventsResource {
 		Entity eventsEntity = new Entity("EVENTS");
 		eventsEntity.setProperty("eventName", events.getEventName());
 		eventsEntity.setProperty("eventTagine", events.getEventTagline());
+
+		eventsEntity.setProperty("eventDate", events.getEventDate());
+
+		
+		eventsEntity.setProperty("eventTime", events.getEventTime());
+		eventsEntity.setProperty("duration", events.getDuration());
+
+		
+		eventsEntity.setProperty("eventType", events.getEventType());
+		eventsEntity.setProperty("eventHost", events.getEventHost());
+		eventsEntity.setProperty("purpose", events.getPurpose());
+		eventsEntity.setProperty("department", events.getDepartment());
+		eventsEntity.setProperty("capacity", events.getCapacity());
+		eventsEntity.setProperty("location", events.getLocation());
+		eventsEntity.setProperty("description", events.getDescription());
+		eventsEntity.setProperty("createrName", events.getCreaterName());
+		eventsEntity.setProperty("createrEmail", events.getCreaterEmail());
+		eventsEntity.setProperty("createrRole", events.getCreaterRole());
+		
 		
 		datastore.put(eventsEntity);
 		
