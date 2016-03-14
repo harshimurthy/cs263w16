@@ -25,10 +25,38 @@
       {
         color:#e91e63;
       }
+      .stylishfont
+      {
+        font-family:'Tangerine';
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .bgimage
+      {
+        content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+    background-image: url('images/ucsb3.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    }
 
       </style>
      </head>
    <body>  
+
+   <div class="bgimage">
 
    <nav class="cyan darken-4">
     <div class="nav-wrapper container">
@@ -42,10 +70,10 @@
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
-        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
-        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story<br/><i class="material-icons prefix center">class</i><br/><br/>Story I want to write</a></li>
-        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories<br/><i class="material-icons prefix center">class</i><br/><br/>Stories of UCSB</a></li>
+        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event</a></li>
+        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events</a></li>
+        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story</a></li>
+        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories</a></li>
         <%
         
                            if(user==null)
@@ -65,18 +93,20 @@
   Body
 
   -->
+  
 
   <div class="row container">
         <div class="row">
           <div class="col s12 center">
             <p>
-            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> View Information of all events</h5>
+            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> View Stories</h5>
             </p>
-            </div>
           </div>
         </div>
+  </div>
 
 
+<!--
         <table class="striped responsive-table" id="viewtable">
         <thead>
     
@@ -87,15 +117,28 @@
           </tr>
         </thead>        
       </table>
+-->
 
+
+      <div class="row container">
+        <div class="row card-panel pink white-text center">
+          <div class="col s12 center"> Stories of UCSB!
+          </div>
+        </div>
+      </div>
+      <div class="row container" >
+        <div class="col s12" id="blogs">
+        </div>
       
+      </div>
+
 <!--
 
 Footer
 
 -->
 
-<footer class="page-footer cyan darken-4">
+<footer class="page-footer cyan darken-4 down">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -150,13 +193,15 @@ Footer
               var title=myStories["title"];
               var about=myStories["about"];
               var tale=myStories["tale"];
-              $('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
+              //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
+
+              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div></div>');
             }
           }
         })
         });
         </script>
 
-
+</div>
    </body>   
 </html>
