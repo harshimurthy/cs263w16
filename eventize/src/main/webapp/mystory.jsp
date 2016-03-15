@@ -59,6 +59,12 @@ background-y-position: top;
     background-size: cover;
     }
 
+     .divoverflow
+    {
+      
+      word-wrap: break-word; 
+    }
+
       </style>
      </head>
    <body>  
@@ -129,13 +135,12 @@ background-y-position: top;
 
       <div class="row container">
         <div class="row card-panel pink white-text center">
-          <div class="col s12 center"> Stories of UCSB!
+          <div class="col s12 center"> My stories of UCSB!
           </div>
         </div>
       </div>
-      <div class="row container" >
-        <div class="col s12" id="blogs">
-        </div>
+      <div class="row container" id="blogs" >
+        
       
       </div>
 
@@ -195,11 +200,12 @@ Footer
               
               success: function()
               {
-                  alert("Event was successfully deleted"),
+                  alert("Event was successfully deleted");
+                  location.reload();
                   
               }
             })
-              location.reload();
+              
             
         }
 
@@ -223,7 +229,7 @@ Footer
               var id=myStories["id"];
               //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
 
-              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div><div class="row"><div class="col s12 center"><button type="button" value = \"' + id + '\" onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Cancel </button></div></div></div>');
+              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container divoverflow"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div><div class="row"><div class="col s12 center"><button type="button" value = \"' + id + '\" onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Cancel </button></div></div></div>');
 
                
             }

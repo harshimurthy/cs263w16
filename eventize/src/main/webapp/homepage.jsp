@@ -77,13 +77,13 @@
             <div class="row">
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">turned_in</i>
-                  <input placeholder="Event Name" id="eventName" type="text" class="validate" required>
+                  <input placeholder="Event Name" id="eventName" type="text" class="validate" maxlength="50" length="50" required>
                   <label for="email">Event name</label>
                </div>
 
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor ">view_day</i>
-                  <input placeholder="Event tagline" id="eventTagline" type="text" class="validate">
+                  <input placeholder="Event tagline" id="eventTagline" type="text" class="validate" maxlength="100" length="100">
                   <label for="tagline">Event tagline</label>
                </div>
             </div>
@@ -103,8 +103,8 @@
                         
                <div class="input-field col s4">
                   <i class="material-icons prefix greencolor">add_alert</i>
-                  <input placeholder="Duration" id="duration" type="text" class="validate" required>
-                  <label for="email">Duration (Ex: 2 hours, 40 mins , 2.5 hours)</label>
+                  <input placeholder="Duration" id="duration" type="text" class="validate" maxlength="50" length="50" required>
+                  <label for="duration ">Duration (Ex: 2 hours, 40 mins , 2.5 hours)</label>
                </div>
             </div>
 
@@ -246,7 +246,7 @@
             <div class="row">
                <div class="input-field col s12">
                     <i class="material-icons prefix pink-icon greencolor">recent_actors</i>
-                     <input placeholder="Maximum Number of People allowed" id="capacity" type="text" class="validate" required>
+                     <input placeholder="Maximum Number of People allowed" id="capacity" type="number" class="validate" required>
                   <label for="capacity">Maximum Number of People allowed</label>                   
                  
 
@@ -257,13 +257,13 @@
             <div class="row">
             <div class="input-field col s6">
             <i class="material-icons prefix greencolor">location_on</i>
-            <textarea id="location" class="materialize-textarea" length="120" required></textarea>
+            <textarea id="location" class="materialize-textarea" length="120" maxlength="120" required></textarea>
             <label for="location">Location of the event</label>
           </div>
 
           <div class="input-field col s6">
             <i class="material-icons prefix greencolor">description</i>
-            <textarea id="description" class="materialize-textarea" length="120"></textarea>
+            <textarea id="description" class="materialize-textarea" length="120" maxlength="120"></textarea>
             <label for="description">Description about the event</label>
           </div>
         </div>
@@ -282,7 +282,7 @@
           <div class="row">
                <div class="input-field col s6">
                   <i class="material-icons prefix greencolor">account_circle</i>
-                  <input placeholder="Your Name" id="createrName" type="text" class="active validate" required>
+                  <input placeholder="Your Name" id="createrName" type="text" class="active validate" length="50" maxlength="50" required>
                   <label for="name">Your Name</label>
                </div>
                <div class="input-field col s6">
@@ -295,19 +295,19 @@
           <div class="row">
           <div class="input-field col s12">
             <i class="material-icons prefix greencolor">perm_contact_calendar</i><label for="createrRole">Your role</label> <br/>
-                <input class="with-gap" name="createrRole" id="createrRole" type="radio" value="student"/>
+                <input class="with-gap"  id="createrRole" type="radio" value="student"/>
                 <label for="student">Student</label>
 
-                <input class="with-gap" name="createrRole" id="createrRole" type="radio" value="professor"/>
+                <input class="with-gap"  id="createrRole" type="radio" value="professor"/>
                 <label for="professor">Professor</label>
 
-                <input class="with-gap" name="createrRole" id="createrRole" type="radio" value="staff"/>
+                <input class="with-gap"  id="createrRole" type="radio" value="staff"/>
                 <label for="staff">University Staff</label>
 
-                <input class="with-gap" name="createrRole" id="createrRole" type="radio" value="companystaff"/>
+                <input class="with-gap"  id="createrRole" type="radio" value="companystaff"/>
                 <label for="cstaff">Company Staff</label>
 
-                <input class="with-gap" name="createrRole" id="createrRole" type="radio" value="others"/>
+                <input class="with-gap" id="createrRole" type="radio" value="others"/>
                 <label for="others">Other</label>
           </div>
           </div>
@@ -318,7 +318,7 @@
            <div class="row">
            <div class="col s12 pinkcolor"> 
            <p class="center">
-            <button onclick="submitData()" class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#e91e63">Submit
+            <button onclick="submitData()" class="btn waves-effect waves-light" type="submit" name="action" style="background-color:#e91e63">Submit event details
               <i class="material-icons right">send</i>
             </button>
             </p>
@@ -397,12 +397,9 @@ Footer
 
           eventsData["createrName"] = $('#createrName')[0].value;
           eventsData["createrEmail"] = $('#createrEmail')[0].value;
-          eventsData["createrRole"] = $('#createrRole')[0].value;
+          eventsData["createrRole"] = $('#createrRole')[0].value;          
 
-          
-          
-
-          //console.log(eventsData);
+        
         
           
           $.ajax({
@@ -414,7 +411,8 @@ Footer
                 dataType: "json",
                 success: function()
                 {
-                    alert("Yeh!!Your event was successfully created");
+                    //alert("Yeh!!Your event was successfully created");
+                    location.reload();
                 }
               })
 

@@ -101,6 +101,9 @@
           </tr>
         </thead>
 
+        <div id="eventindex">
+        </div>
+
         
       </table>
 
@@ -182,11 +185,14 @@ Footer
               var createrName=myEvents["createrName"];
               var createrEmail=myEvents["createrEmail"];
               var createrRole=myEvents["createrRole"];
+              //onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Cancel </button></div></div></div>
+
+              //$("#eventindex").append('<div class=row><div class="col s6">'+eventName + '</div><div class="col s6"><button type="button" value=)
 
                               $('#viewtable').append('<tbody><tr><td>' + eventName+ '</td>' + '<td>' + eventTagline + '</td>' + '<td>' + eventDate+ '</td>'+ '<td>' + eventTime + '</td>' + '<td>' + duration + '</td>' +'<td>'+ eventType+ '</td>'+ '<td>'+ eventHost+ '</td>'+ '<td>'+ purpose+ '</td>'+ '<td>'+ department+ '</td>'+ '<td>'+capacity + '</td>'+ '<td>'+ location+ '</td>'+ '<td>'+ description+ '</td>'+ '<td>'+ createrName+ '</td>'+ '<td>'+ createrEmail+ '</td>'+ '<td>'+createrRole + '</td></tr></tbody>');
-                
 
-              
+                               //$('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div><div class="row"><div class="col s12 center"><button type="button" value = \"' + id + '\" onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Cancel </button></div></div></div>');
+            
               
             }
 
@@ -195,7 +201,7 @@ Footer
 
         })
         });
-        location.reload();
+    
         </script>
 
 

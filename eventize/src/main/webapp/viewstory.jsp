@@ -54,6 +54,12 @@
     background-size: cover;
     }
 
+    .divoverflow
+    {
+      
+      word-wrap: break-word; 
+    }
+
       </style>
      </head>
    <body>  
@@ -197,12 +203,12 @@ Footer
               var tale=myStories["tale"];
               //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
 
-              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div></div>');
+              $('#blogs').append('<div class="row container center "><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row teal white-text container divoverflow"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div></div>');
             }
           }
         })
         });
-        after reloading
+       // after reloading
         </script>
 
 </div>
