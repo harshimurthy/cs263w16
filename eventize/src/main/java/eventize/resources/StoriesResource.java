@@ -73,10 +73,46 @@ public class StoriesResource {
 					story = new Stories();			
 					story.setTitle((String)storiesEntity.getProperty("title"));
 					story.setAbout((String)storiesEntity.getProperty("about"));
-					story.setTale((String)storiesEntity.getProperty("tale"));				
+					story.setTale((String)storiesEntity.getProperty("tale"));	
+
+					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));
+
+								
 					stories.add(story);
 				}
-				syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(90));
+				syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(30));
+			}
+			return stories;
+	}
+
+	@GET
+	@Path("/byOwner")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Stories> getActivitybyOwner()
+		{
+		
+			ArrayList<Stories> stories = new ArrayList<Stories>();
+			if(userService.getCurrentUser()!=null)
+
+			{
+				Stories story;
+				Filter byOwner = new FilterPredicate("ownerId", FilterOperator.EQUAL, userService.getCurrentUser().getUserId());
+        		Query q = new Query("STORIES").setFilter(byOwner);
+				PreparedQuery pq = datastore.prepare(q);
+				for (Entity storiesEntity : pq.asIterable()) {
+					story = new Stories();
+						
+					story.setTitle((String)storiesEntity.getProperty("title"));
+					story.setAbout((String)storiesEntity.getProperty("about"));
+					story.setTale((String)storiesEntity.getProperty("tale"));	
+
+					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));
+
+								
+					stories.add(story);
+			
+				}
+				
 			}
 			return stories;
 	}
@@ -101,7 +137,8 @@ public class StoriesResource {
 		String CACHE_KEY="STORIES";
 		storiesEntity.setProperty("title", stories.getTitle());
 		storiesEntity.setProperty("about", stories.getAbout());
-		storiesEntity.setProperty("tale", stories.getTale());			
+		storiesEntity.setProperty("tale", stories.getTale());
+		storiesEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());			
 		datastore.put(storiesEntity);
 		syncCache.put(CACHE_KEY,stories);
 		
@@ -121,7 +158,7 @@ public class StoriesResource {
 		}
 		stories.add(story);
 		System.out.println("came to get memcache! "+stories.size());
-		syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(90));
+		syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(30));
 	}
 }
 

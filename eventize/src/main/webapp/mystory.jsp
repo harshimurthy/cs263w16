@@ -8,9 +8,9 @@
 <html>
    <head>
       <title>Eventize!</title>
-      <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1">      
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>    
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
@@ -27,10 +27,38 @@
       {
         color:#e91e63;
       }
+      .stylishfont
+      {
+        font-family:'Tangerine';
+        font-size: 30px;
+        font-weight: bold;
+      }
+      .bgimage
+      {
+        content: ' ';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    
+    background-image: url('images/ucsb3.jpg');
+    background-repeat: no-repeat;
+    background-position: 50% 0;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    }
 
       </style>
      </head>
    <body>  
+
+   <div class="bgimage">
 
    <nav class="cyan darken-4">
     <div class="nav-wrapper container">
@@ -44,10 +72,10 @@
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
-        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
-        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story<br/><i class="material-icons prefix center">class</i><br/><br/>Story I want to write</a></li>
-        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories<br/><i class="material-icons prefix center">class</i><br/><br/>Stories of UCSB</a></li>
+        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event</a></li>
+        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events</a></li>
+        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story</a></li>
+        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories</a></li>
         <%
         
                            if(user==null)
@@ -67,51 +95,52 @@
   Body
 
   -->
+  
 
   <div class="row container">
         <div class="row">
           <div class="col s12 center">
             <p>
-            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> View Information of all events</h5>
+            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> My stories</h5>
             </p>
-            </div>
           </div>
         </div>
+  </div>
 
 
-        <table class="striped responsive-table teal lighten-3" id="viewtable">
+<!--
+        <table class="striped responsive-table" id="viewtable">
         <thead>
     
           <tr>
-              <th data-field="eventName">Event Name</th>
-              <th data-field="eventTagline">Event Tagline</th>
-              <th data-field="eventDate">Date</th>
-              <th data-field="eventTime">Time</th>
-              <th data-field="duration">Duration</th>
-              <th data-field="eventType">Type</th>
-              <th data-field="eventHost">Host</th>
-              <th data-field="purpose">Purpose</th>
-              <th data-field="department">Department</th>
-              <th data-field="capacity">Capacity</th>
-              <th data-field="location">Location</th>
-              <th data-field="description">Description</th>
-              <th data-field="createrName">Creater Name</th>
-              <th data-field="createrEmail">Creater Email</th>
-              <th data-field="createrRole">Creater Role</th>
+              <th data-field="title">Title</th>
+              <th data-field="about">About</th>
+              <th data-field="tale">Story</th>
           </tr>
-        </thead>
-
-        
+        </thead>        
       </table>
+-->
 
+
+      <div class="row container">
+        <div class="row card-panel pink white-text center">
+          <div class="col s12 center"> Stories of UCSB!
+          </div>
+        </div>
+      </div>
+      <div class="row container" >
+        <div class="col s12" id="blogs">
+        </div>
       
+      </div>
+
 <!--
 
 Footer
 
 -->
 
-<footer class="page-footer cyan darken-4">
+<footer class="page-footer cyan darken-4 down">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -154,7 +183,7 @@ Footer
                        
 
         $.ajax({
-          url:"/rest/events",
+          url:"/rest/stories/byOwner",
           type:'GET',
           dataType:"json",
           success: function(data)
@@ -162,41 +191,19 @@ Footer
             var i;
             for(i=0;i<data.length;i++)
             {
-              var myEvents=data[i];
-              var eventName=myEvents["eventName"];
-              var eventTagline=myEvents["eventTagline"];
-              
-              var eventDate=myEvents["eventDate"];
-              var eventTime=myEvents["eventTime"];
-              var duration=myEvents["duration"];
-              
-              var eventType=myEvents["eventType"];
-              
-              var eventHost=myEvents["eventHost"];
-              var purpose=myEvents["purpose"];
-              var department=myEvents["department"];
-              
-              var capacity=myEvents["capacity"];
-              var location=myEvents["location"];
-              var description=myEvents["description"];
-              var createrName=myEvents["createrName"];
-              var createrEmail=myEvents["createrEmail"];
-              var createrRole=myEvents["createrRole"];
+              var myStories=data[i];
+              var title=myStories["title"];
+              var about=myStories["about"];
+              var tale=myStories["tale"];
+              //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
 
-                              $('#viewtable').append('<tbody><tr><td>' + eventName+ '</td>' + '<td>' + eventTagline + '</td>' + '<td>' + eventDate+ '</td>'+ '<td>' + eventTime + '</td>' + '<td>' + duration + '</td>' +'<td>'+ eventType+ '</td>'+ '<td>'+ eventHost+ '</td>'+ '<td>'+ purpose+ '</td>'+ '<td>'+ department+ '</td>'+ '<td>'+capacity + '</td>'+ '<td>'+ location+ '</td>'+ '<td>'+ description+ '</td>'+ '<td>'+ createrName+ '</td>'+ '<td>'+ createrEmail+ '</td>'+ '<td>'+createrRole + '</td></tr></tbody>');
-                
-
-              
-              
+              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div></div>');
             }
-
           }
-
-
         })
         });
         </script>
 
-
+</div>
    </body>   
 </html>

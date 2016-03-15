@@ -18,6 +18,8 @@ public class Stories implements Serializable
 	String title;
 	String about;
 	String tale;
+
+	String ownerId;
 	
 	public Stories()
 	{
@@ -58,6 +60,14 @@ public class Stories implements Serializable
 	public void setTale(String tale)
 	{
 		this.tale=tale;
+	}
+
+	public String getOwnerId() {
+		return ownerId;
+	}
+	@XmlElement
+	public void setOwnerId(String ownerId) {
+		this.ownerId = ownerId;
 	}
 		
 }
