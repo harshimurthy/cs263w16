@@ -31,8 +31,8 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-    opacity: 0.6;
-    background-image: url('images/ucsb2.jpg');
+    
+    background-image: url('images/screen-bg_4.jpg');
     background-repeat: no-repeat;
     background-position: 50% 0;
     -ms-background-size: cover;
@@ -65,30 +65,31 @@
 
       <div class="row container center">
        <div class="col s12 m12 l12">
-        <a href="details.html" class="waves-effect waves-light btn-large teal darken-3 center"><i class="material-icons left">cloud</i>Know Everything about Eventize!</a>
+        <a href="#" class="waves-effect waves-light btn-large teal darken-3 center"><i class="material-icons left">theaters</i>Youtube Video Presentation!</a>
+        </div>
+      </div>
+
+      <div class="row container center">
+       <div class="col s12 m12 l12">
+        <a href="#" class="waves-effect waves-light btn-large teal darken-3 center"><i class="material-icons left">settings_overscan</i>SlideShare redirection!</a>
+        </div>
+      </div>
+
+
+
+      <div class="row container center">
+       <div class="col s12 m12 l12">
+        <a href="#" class="waves-effect waves-light btn-large teal darken-3 center"><i class="material-icons left">library_books</i>GitHub Link - Code and test!</a>
+        </div>
+      </div>
+
+      <div class="row container center">
+       <div class="col s12 m12 l12">
+        <a href="#" class="waves-effect waves-light btn-large teal darken-3 center"><i class="material-icons left">view_headline</i>Brief Documentation!</a>
         </div>
       </div>
           
-      <div class="row container center">
-        <div class="col s12 m12 l12">
-
-        <%
-          UserService userService = UserServiceFactory.getUserService();
-          User user = userService.getCurrentUser();
-          if (user != null) {
-            pageContext.setAttribute("user", user); 
-            response.sendRedirect("homepage.jsp"); 
-          }
-          if(user==null){ 
-        %>
-        <a href="<%= userService.createLoginURL(request.getRequestURI()) %>" class="teal darken-3 waves-effect waves-light btn-large">
-                                  <i class="material-icons left">input</i>Login using your gmail account</a>
-        <%                       
-              }
-         %> 
-
-         </div>
-       </div>
+      
     </div>
   </div>
 
