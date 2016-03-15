@@ -167,6 +167,8 @@ Footer
           storiesData["title"] = $('#title')[0].value;
           storiesData["about"] = $('#about')[0].value;          
           storiesData["tale"] = $('#tale')[0].value;
+          storiesData["id"] = id++;
+          var id = 1;
     
           
           $.ajax({
@@ -177,9 +179,10 @@ Footer
                 dataType: "json",
                 success: function()
                 {
-                    alert("Yeh!!Your event was successfully created");
+                    alert("Yeh!!Your event was successfully created!");
                 }
               })
+          location.reload();
     
         }
 

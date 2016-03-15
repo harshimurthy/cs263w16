@@ -77,6 +77,8 @@ public class StoriesResource {
 
 					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));
 
+
+
 								
 					stories.add(story);
 				}
@@ -104,9 +106,9 @@ public class StoriesResource {
 						
 					story.setTitle((String)storiesEntity.getProperty("title"));
 					story.setAbout((String)storiesEntity.getProperty("about"));
-					story.setTale((String)storiesEntity.getProperty("tale"));	
-
+					story.setTale((String)storiesEntity.getProperty("tale"));
 					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));
+					story.setId(KeyFactory.keyToString(storiesEntity.getKey()));
 
 								
 					stories.add(story);
@@ -138,7 +140,8 @@ public class StoriesResource {
 		storiesEntity.setProperty("title", stories.getTitle());
 		storiesEntity.setProperty("about", stories.getAbout());
 		storiesEntity.setProperty("tale", stories.getTale());
-		storiesEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());			
+		storiesEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());		
+		storiesEntity.setProperty("id",stories.getId());	
 		datastore.put(storiesEntity);
 		syncCache.put(CACHE_KEY,stories);
 		
@@ -160,5 +163,24 @@ public class StoriesResource {
 		System.out.println("came to get memcache! "+stories.size());
 		syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(30));
 	}
+
+
+	//deleting
+
+	@DELETE
+  	@Path("/{id}")
+  	public void deleteStories(@PathParam("id") String id) {
+
+  	Queue queue = QueueFactory.getDefaultQueue();
+  	queue.add(TaskOptions.Builder.withUrl("/rest/stories/taskQueue/"+id).method(TaskOptions.Method.DELETE));
+	//datastore.delete(KeyFactory.stringToKey(id));
+  }
+
+	@DELETE
+  	@Path("/taskQueue/{id}")
+  	public void deleteStoriesQueue(@PathParam("id") String id) {
+
+	datastore.delete(KeyFactory.stringToKey(id));
+  }
 }
 

@@ -20,6 +20,7 @@ public class Stories implements Serializable
 	String tale;
 
 	String ownerId;
+	String id;
 	
 	public Stories()
 	{
@@ -62,12 +63,41 @@ public class Stories implements Serializable
 		this.tale=tale;
 	}
 
-	public String getOwnerId() {
+	public String getOwnerId() 
+	{
 		return ownerId;
 	}
+
 	@XmlElement
-	public void setOwnerId(String ownerId) {
+	public void setOwnerId(String ownerId) 
+	{
 		this.ownerId = ownerId;
 	}
+
+	public String getId()
+	{
+		return id;
+	}
+
+	@XmlElement
+	public void setId(String id)
+	{
+		this.id=id;
+	}
+
+	/*
+
+	public String getId() 
+	{
++		return id;
++	}
+
+
++	@XmlElement
++	public void setId(String id) 
+{
++		this.id = id;
++	}
+*/
 		
 }

@@ -38,15 +38,20 @@
         content: ' ';
     display: block;
     position: absolute;
+    
+    overflow:scroll;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    
     
     background-image: url('images/ucsb3.jpg');
     background-repeat: no-repeat;
-    background-position: 50% 0;
+
+    background-x-position: center;
+background-y-position: top;
+    
     -ms-background-size: cover;
     -o-background-size: cover;
     -moz-background-size: cover;
@@ -177,16 +182,36 @@ Footer
         
         <script type="text/javascript">
 
+        function cancelStory(button)
+        {
+
+              var $this = $(this);
+              console.log($this);
+              console.log(button.value);
+              $.ajax({
+              
+             url: "/rest/stories/"+button.value,
+              type: "DELETE",
+              
+              success: function()
+              {
+                  alert("Event was successfully deleted"),
+                  
+              }
+            })
+              location.reload();
+            
+        }
+
         
         $( document ).ready(function() 
         {
-                       
-
-        $.ajax({
+          $.ajax(
+          {
           url:"/rest/stories/byOwner",
           type:'GET',
           dataType:"json",
-          success: function(data)
+          success:function(data)
           {
             var i;
             for(i=0;i<data.length;i++)
@@ -195,9 +220,12 @@ Footer
               var title=myStories["title"];
               var about=myStories["about"];
               var tale=myStories["tale"];
+              var id=myStories["id"];
               //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
 
-              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div></div>');
+              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div><div class="row"><div class="col s12 center"><button type="button" value = \"' + id + '\" onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Cancel </button></div></div></div>');
+
+               
             }
           }
         })

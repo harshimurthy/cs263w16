@@ -417,6 +417,8 @@ Footer
                     alert("Yeh!!Your event was successfully created");
                 }
               })
+
+         
     
         }
 

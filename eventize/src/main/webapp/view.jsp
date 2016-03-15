@@ -195,6 +195,7 @@ Footer
 
         })
         });
+        location.reload();
         </script>
 
 

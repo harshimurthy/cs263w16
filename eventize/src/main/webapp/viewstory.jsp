@@ -202,6 +202,7 @@ Footer
           }
         })
         });
+        after reloading
         </script>
 
 </div>
