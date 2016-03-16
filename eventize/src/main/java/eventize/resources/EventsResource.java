@@ -79,10 +79,55 @@ public class EventsResource {
 				event.setCreaterEmail((String)eventsEntity.getProperty("createrEmail"));
 				event.setCreaterRole((String)eventsEntity.getProperty("createrRole"));	
 				//event.setTId((String)eventsEntity.getProperty("TId"));
+				event.setOwnerId((String)eventsEntity.getProperty("ownerId"));
+
 				
 
 				events.add(event);
 			}
+			return events;
+	}
+
+	@GET
+	@Path("/byOwner")
+	@Produces(MediaType.APPLICATION_JSON)
+	public ArrayList<Events> getActivitybyOwner()
+		{
+		
+			ArrayList<Events> events = new ArrayList<Events>();
+			if(userService.getCurrentUser()!=null)
+
+			{
+				Events event;
+				Filter byOwner = new FilterPredicate("ownerId", FilterOperator.EQUAL, userService.getCurrentUser().getUserId());
+        		Query q = new Query("EVENTS").setFilter(byOwner);
+				PreparedQuery pq = datastore.prepare(q);
+				for (Entity eventsEntity : pq.asIterable()) {
+					event = new Events();						
+					event.setEventName((String)eventsEntity.getProperty("eventName"));
+				event.setEventTagline((String)eventsEntity.getProperty("eventTagline"));
+				event.setEventDate((String)eventsEntity.getProperty("eventDate"));				
+				event.setEventTime((String)eventsEntity.getProperty("eventTime"));
+				event.setDuration((String)eventsEntity.getProperty("duration"));				
+				event.setEventType((String)eventsEntity.getProperty("eventType"));				
+				event.setEventHost((String)eventsEntity.getProperty("eventHost"));
+				event.setPurpose((String)eventsEntity.getProperty("purpose"));
+				event.setDepartment((String)eventsEntity.getProperty("department"));
+				event.setCapacity((String)eventsEntity.getProperty("capacity"));				
+				event.setLocation((String)eventsEntity.getProperty("location"));				
+				event.setDescription((String)eventsEntity.getProperty("description"));
+				event.setCreaterName((String)eventsEntity.getProperty("createrName"));
+				event.setCreaterEmail((String)eventsEntity.getProperty("createrEmail"));
+				event.setCreaterRole((String)eventsEntity.getProperty("createrRole"));
+				event.setOwnerId((String)eventsEntity.getProperty("ownerId"));
+				event.setId(KeyFactory.keyToString(eventsEntity.getKey()));								
+					events.add(event);
+			
+				}
+				
+			}
+			
+			
 			return events;
 	}
 
@@ -108,8 +153,26 @@ public class EventsResource {
 		eventsEntity.setProperty("createrEmail", events.getCreaterEmail());
 		eventsEntity.setProperty("createrRole", events.getCreaterRole());	
 		//eventsEntity.setProperty("TId", events.getTId());	
+		eventsEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());		
+		eventsEntity.setProperty("id",events.getId());
 		datastore.put(eventsEntity);
 		
 	}
+
+	@DELETE
+  	@Path("/{id}")
+  	public void deleteEvents(@PathParam("id") String id) {
+
+  	Queue queue = QueueFactory.getDefaultQueue();
+  	queue.add(TaskOptions.Builder.withUrl("/rest/events/taskQueue/"+id).method(TaskOptions.Method.DELETE));
+	//datastore.delete(KeyFactory.stringToKey(id));
+  }
+
+	@DELETE
+  	@Path("/taskQueue/{id}")
+  	public void deleteEventsQueue(@PathParam("id") String id) {
+
+	datastore.delete(KeyFactory.stringToKey(id));
+  }
 }
 

@@ -397,10 +397,12 @@ Footer
 
           eventsData["createrName"] = $('#createrName')[0].value;
           eventsData["createrEmail"] = $('#createrEmail')[0].value;
-          eventsData["createrRole"] = $('#createrRole')[0].value;          
+          eventsData["createrRole"] = $('#createrRole')[0].value; 
 
-        
-        
+         
+          eventsData["id"] = id++;
+          var id = 1; 
+                 
           
           $.ajax({
                
@@ -411,11 +413,11 @@ Footer
                 dataType: "json",
                 success: function()
                 {
-                    //alert("Yeh!!Your event was successfully created");
-                    location.reload();
+                    alert("Yeh!!Your event was successfully created");
+                    
                 }
               })
-
+          location.reload();
          
     
         }

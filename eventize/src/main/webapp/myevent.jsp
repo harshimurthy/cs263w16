@@ -8,9 +8,9 @@
 <html>
    <head>
       <title>Eventize!</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">  
-    <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
-        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>    
+      <link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico" />    
+        <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">      
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.3/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Tangerine">
@@ -27,49 +27,10 @@
       {
         color:#e91e63;
       }
-      .stylishfont
-      {
-        font-family:'Tangerine';
-        font-size: 30px;
-        font-weight: bold;
-      }
-      .bgimage
-      {
-        content: ' ';
-    display: block;
-    position: absolute;
-    
-    overflow:scroll;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    
-    
-    background-image: url('images/ucsb3.jpg');
-    background-repeat: no-repeat;
-
-    background-x-position: center;
-background-y-position: top;
-    
-    -ms-background-size: cover;
-    -o-background-size: cover;
-    -moz-background-size: cover;
-    -webkit-background-size: cover;
-    background-size: cover;
-    }
-
-     .divoverflow
-    {
-      
-      word-wrap: break-word; 
-    }
 
       </style>
      </head>
    <body>  
-
-   <div class="bgimage">
 
    <nav class="cyan darken-4">
     <div class="nav-wrapper container">
@@ -83,10 +44,10 @@ background-y-position: top;
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event</a></li>
-        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events</a></li>
-        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story</a></li>
-        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories</a></li>
+        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
+        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
+        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story<br/><i class="material-icons prefix center">class</i><br/><br/>Story I want to write</a></li>
+        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories<br/><i class="material-icons prefix center">class</i><br/><br/>Stories of UCSB</a></li>
         <%
         
                            if(user==null)
@@ -106,40 +67,34 @@ background-y-position: top;
   Body
 
   -->
-  
 
   <div class="row container">
         <div class="row">
           <div class="col s12 center">
             <p>
-            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> My stories</h5>
+            <h5 style="font-family:'Tangerine';font-size: 50px;color:#e91e63"> View Information of all events</h5>
             </p>
+            </div>
           </div>
         </div>
-  </div>
 
 
-      <div class="row container">
-        <div class="row card-panel pink white-text center">
-          <div class="col s12 center"> My stories of UCSB!
-          </div>
-        </div>
-      </div>
-
-      <div class="row container" id="blogs" >
         
+
+        <div class="container center" id="eventindex">
+        </div>
+
+        
+
+
       
-      </div>
-
-
-            
 <!--
 
 Footer
 
 -->
 
-<footer class="page-footer cyan darken-4 down">
+<footer class="page-footer cyan darken-4">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -176,57 +131,51 @@ Footer
         
         <script type="text/javascript">
 
-        function cancelStory(button)
+        function cancelEvents(button)
         {
 
               var $this = $(this);
-              console.log($this);
-              console.log(button.value);
               $.ajax({
               
-             url: "/rest/stories/"+button.value,
+             url: "/rest/events/"+button.value,
               type: "DELETE",
               
               success: function()
               {
-                  alert("Story was successfully deleted");
+                  alert("Event was successfully deleted");
                   location.reload();
                   
               }
-            })
-              
+            })             
             
         }
 
         
         $( document ).ready(function() 
-        {
-          $.ajax(
-          {
-          url:"/rest/stories/byOwner",
+        {                    
+          $.ajax
+          ({
+          url:"/rest/events/byOwner",
           type:'GET',
           dataType:"json",
-          success:function(data)
+          success: function(data)
           {
             var i;
             for(i=0;i<data.length;i++)
             {
-              var myStories=data[i];
-              var title=myStories["title"];
-              var about=myStories["about"];
-              var tale=myStories["tale"];
-              var id=myStories["id"];
-              //$('#viewtable').append('<tbody><tr><td>' + title+ '</td>' + '<td>' + about + '</td>' + '<td>' + tale + '</td></tr></tbody>');
-
-              $('#blogs').append('<div class="row container center"><div class="col s12 center"><span class="stylishfont pinkcolor">Title :'+title+ '</span></div></div><div class="row card-panel teal white-text container divoverflow"><div class="row"><div class="col s12"> About : ' + about + '</div></div><div class="row"><div class="col s12 ">Story : '+ tale + '</div></div><div class="row"><div class="col s12 center"><button type="button" value = \"' + id + '\" onclick="cancelStory(this)" class="btn btn-danger pink center" id=deleteEvent> Delete Story </button></div></div></div>');
-
-               
+              var myEvents=data[i];
+              var eventName=myEvents["eventName"];
+              var id=myEvents["id"];
+              $('#eventindex').append('<div class="row"><div class="col s6">' + eventName+ '</div><div class="col s6"><button type="button" value = \"' + id + '\" onclick="cancelEvents(this)" class="btn btn-danger pink center" id=deleteEvent> Delete Event </button></div></div>');
+              
             }
+
           }
         })
         });
+    
         </script>
 
-</div>
+
    </body>   
 </html>

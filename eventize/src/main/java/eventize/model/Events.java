@@ -6,9 +6,11 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import java.io.Serializable;
 @XmlRootElement
 public class Events
 {
+	private static final long serialVersionUID = 1L;
 	String eventName;
 	String eventTagline;
 	String eventDate;
@@ -27,6 +29,8 @@ public class Events
 	String createrEmail;
 	String createrRole;
 
+	String ownerId;
+	String id;
 	//String TId;
 
 
@@ -231,5 +235,27 @@ public class Events
 		this.TId = TId;
 	}
 	*/
+
+	public String getOwnerId() 
+	{
+		return ownerId;
+	}
+
+	@XmlElement
+	public void setOwnerId(String ownerId) 
+	{
+		this.ownerId = ownerId;
+	}
+
+	public String getId()
+	{
+		return id;
+	}
+
+	@XmlElement
+	public void setId(String id)
+	{
+		this.id=id;
+	}
 	
 }
