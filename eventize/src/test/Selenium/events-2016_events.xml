@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://events-2016.appspot.com/" />
+<title>New Test</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">New Test</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=inputLogin using your gmail account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Email</td>
+	<td>harshithachidanand</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Passwd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=Passwd</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=next</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=eventName</td>
+	<td>Conference</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=eventName</td>
+	<td>Turing award winner talk</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=eventTagline</td>
+	<td>About crypto</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>//table[@id='eventDate_table']/tbody/tr[5]/td[4]/div</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=button.btn-flat.picker__close</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=eventTime</td>
+	<td>3:00PM</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=duration</td>
+	<td>1.5hrs</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.select-dropdown.active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=li.active &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.select-dropdown.active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#select-options-25d6e23b-464f-1f35-09ec-c513e097472c &gt; li.active &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.select-dropdown.active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#select-options-7d7890da-07cc-2e53-768b-68e7d1028e75 &gt; li.active &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=input.select-dropdown.active</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#select-options-eb0aa0c1-a2ca-3b74-adf9-af25cfd1f142 &gt; li.active &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=capacity</td>
+	<td>90</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=location</td>
+	<td>HFH</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=description</td>
+	<td>Turing award and crypto</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=createrName</td>
+	<td>Chris</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=createrEmail</td>
+	<td>chris@umail.ucsb.edu</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=#select-options-6d8aec00-1773-0b38-d6df-3b3d1f6951b2 &gt; li.active &gt; span</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>name=action</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=note_addEventsarrow_drop_down</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=view</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=note_addEventsarrow_drop_down</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>css=h5</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>link=note_addEventsarrow_drop_down</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=my events</td>
+	<td></td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=deleteEvent</td>
+	<td></td>
+</tr>
+<tr>
+	<td>assertAlert</td>
+	<td>Event was successfully deleted</td>
+	<td></td>
+</tr>
+
+</tbody></table>
+</body>
+</html>

@@ -1,3 +1,23 @@
+Global:
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://events-2016.appspot.com/rest/events/
+
+curl -H "Content-Type: application/json" -X POST -d '{"eventName":"Turing award winner talk","eventTagline":"All about cryptography","eventDate":"03/28/2016","eventTime":"3:40","duration":"1.5 Hours","eventType":"conference","eventHost":"official","purpose":"educational","department":"CMPSC","capacity":"400","location":"Corwin Pavillion","description":"Renowned Speaker ","createrName":"Adam","createrEmail":"adam@gmail.com","createrRole":"Student","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnITCxIGRVZFTlRTGICAgICAgIgKDA"}' http://events-2016.appspot.com/rest/events
+
+ curl -X DELETE http://events-2016.appspot.com/rest/events/ag1zfmV2ZW50cy0yMDE2chMLEgZFVkVOVFMYgICAgO2xgwkM
+
+ (stories)
+
+ curl -H "Content-Type: application/json" -X POST -d '{"title":"This is a totally new story","about":"This is a totally new story","tale":"This is a totally new story","ownerId":"114442867381799593531","id":"ag1zfmV2ZW50cy0yMDE2chQLEgdTVE9SSUVTGICAgIDA-pMLDA"}' http://events-2016.appspot.com/rest/stories/
+
+ curl -H "Content-Type: application/json" -X POST -d '{"title":"This is a totally new story","about":"This is a totally new story","tale":"This is a totally new story","ownerId":"114442867381799593531","id":"ag1zfmV2ZW50cy0yMDE2chQLEgdTVE9SSUVTGICAgIDA-pMLDA"}' http://events-2016.appspot.com/rest/stories/MemcachePost
+
+ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://events-2016.appspot.com/rest/stories/
+
+ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://events-2016.appspot.com/rest/stories/MemcacheGet
+
+ curl -X DELETE http://events-2016.appspot.com/rest/stories/ag1zfmV2ZW50cy0yMDE2chQLEgdTVE9SSUVTGICAgIDA-pMLDA
+
 Devserver:
 
 
@@ -17,7 +37,7 @@ curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET
 curl -X DELETE http://localhost:8080/rest/stories/agtldmVudHMtMjAxNnIUCxIHU1RPUklFUxiAgICAgIDQCQw
 
 (Events POST)
-curl -H "Content-Type: application/json" -X POST -d '{"eventName":"Turing award winner talk","eventTagline":"All about cryptography","eventDate":"03/28/2016","eventTime":"3:40uration":"1.5 Hours","eventType":"conference","eventHost":"official","purpose":"educational","department":"CMPSC","capacity":"400","location":"Corwin Pavillion","description":"Renowned Speaker ","createrName":"Adam","createrEmail":"adam@gmail.com","createrRole":"Student","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnITCxIGRVZFTlRTGICAgICAgIgKDA"}' http://localhost:8080/rest/events
+curl -H "Content-Type: application/json" -X POST -d '{"eventName":"Turing award winner talk","eventTagline":"All about cryptography","eventDate":"03/28/2016","eventTime":"3:40,"duration":"1.5 Hours","eventType":"conference","eventHost":"official","purpose":"educational","department":"CMPSC","capacity":"400","location":"Corwin Pavillion","description":"Renowned Speaker ","createrName":"Adam","createrEmail":"adam@gmail.com","createrRole":"Student","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnITCxIGRVZFTlRTGICAgICAgIgKDA"}' http://localhost:8080/rest/events
 
 (Events GET)
 
