@@ -30,13 +30,31 @@
       {
         color:#e91e63;
       }
+      .footerprob
+      {
+        position:absolute;
+   bottom:0;
+      }
       </style>
      </head>
-   <body>  
+   <body> 
+
+   <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="homepage.jsp">add</a></li>
+  <li><a href="view.jsp">view</a></li>
+  <li><a href="myevent.jsp">my events</a></li>
+</ul> 
+
+<ul id="dropdown2" class="dropdown-content">
+  <li><a href="story.jsp">add</a></li>
+  <li><a href="viewstory.jsp">view</a></li>
+  <li><a href="mystory.jsp">my stories</a></li>
+</ul>
 
    <nav class="cyan darken-4">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo" style="font-family:'Tangerine';font-size: 50px">Eventize!</a>
+      <a href="homepage.jsp" class="brand-logo" style="font-family:'Tangerine';font-size: 50px">Eventize!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li> 
       <%
@@ -46,10 +64,9 @@
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event<br/><i class="material-icons prefix center">note_add</i><br/><br/>Create a new event</a></li>
-        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events<br/><i class="material-icons prefix center">visibility</i><br/><br/>View all the events</a></li>
-        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story<br/><i class="material-icons prefix center">class</i><br/><br/>Story I want to write</a></li>
-        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories<br/><i class="material-icons prefix center">class</i><br/><br/>Stories of UCSB</a></li>
+        <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><i class="material-icons left">note_add</i>Events<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="#!" class="dropdown-button" data-activates="dropdown2"><i class="material-icons left">class</i>Story<i class="material-icons right">arrow_drop_down</i></a></li>
+        
         <%
         
                            if(user==null)
@@ -294,24 +311,19 @@
           
           <div class="row">
           <div class="input-field col s12">
-            <i class="material-icons prefix greencolor">perm_contact_calendar</i><label for="createrRole">Your role</label> <br/>
-                <input class="with-gap"  id="createrRole" type="radio" value="student"/>
-                <label for="student">Student</label>
-
-                <input class="with-gap"  id="createrRole" type="radio" value="professor"/>
-                <label for="professor">Professor</label>
-
-                <input class="with-gap"  id="createrRole" type="radio" value="staff"/>
-                <label for="staff">University Staff</label>
-
-                <input class="with-gap"  id="createrRole" type="radio" value="companystaff"/>
-                <label for="cstaff">Company Staff</label>
-
-                <input class="with-gap" id="createrRole" type="radio" value="others"/>
-                <label for="others">Other</label>
+                  <i class="material-icons prefix greencolor">perm_contact_calendar</i>
+                  <select name="createrRole" id="createrRole">
+                    <option value="" disabled selected>          Choose your option</option>
+                    <option value="Student">          Student</option>
+                    <option value="Professor">          Professor</option>
+                    <option value="Staff">          University Staff</option>
+                    <option value="company_staff">          Company Staff</option>
+                    <option value="other">          Other</option>
+                  </select>
+                  <label>creater Role</label>               
+               </div>          
           </div>
-          </div>
-          </div>
+         </div>
            
            <hr class="pinkcolor"/>
 
@@ -334,7 +346,7 @@ Footer
 
 -->
 
-<footer class="page-footer cyan darken-4">
+<footer class="page-footer cyan darken-4 footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -344,10 +356,15 @@ Footer
               <div class="col l4 offset-l2 s12 right">
                 <h5 class="grey-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="homepage.jsp">Create</a></li>
-                  <li><a class="grey-text text-lighten-3" href="view.jsp">View</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Events</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Signout</a></li>
+                  <li><a class="grey-text text-lighten-3" href="homepage.jsp">Create events</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="view.jsp">View events</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="myevent.jsp">My events</a>
+                  </li>
+                  <li><a class="grey-text text-lighten-3" href="story.jsp">Create stories</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="viewstory.jsp">View stories</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="mystory.jsp">My stories</a>
+                  </li>
+                  
                 </ul>
               </div>
             </div>
@@ -400,8 +417,9 @@ Footer
           eventsData["createrRole"] = $('#createrRole')[0].value; 
 
          
-          eventsData["id"] = id++;
           var id = 1; 
+          eventsData["id"] = id++;
+          
                  
           
           $.ajax({
@@ -430,7 +448,9 @@ Footer
                   selectYears: 15 // Creates a dropdown of 15 years to control year
                 });
 
-                 $('select').material_select();             
+                 $('select').material_select();  
+
+                 $(".dropdown-button").dropdown();           
         
         });
         </script>

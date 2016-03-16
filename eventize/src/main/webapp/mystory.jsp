@@ -65,15 +65,27 @@ background-y-position: top;
       word-wrap: break-word; 
     }
 
+
       </style>
      </head>
    <body>  
 
-   <div class="bgimage">
+   <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  <li><a href="homepage.jsp">add</a></li>
+  <li><a href="view.jsp">view</a></li>
+  <li><a href="myevent.jsp">my events</a></li>
+</ul> 
+
+<ul id="dropdown2" class="dropdown-content">
+  <li><a href="story.jsp">add</a></li>
+  <li><a href="viewstory.jsp">view</a></li>
+  <li><a href="mystory.jsp">my stories</a></li>
+</ul>
 
    <nav class="cyan darken-4">
     <div class="nav-wrapper container">
-      <a href="#" class="brand-logo" style="font-family:'Tangerine';font-size: 50px">Eventize!</a>
+      <a href="homepage.jsp" class="brand-logo" style="font-family:'Tangerine';font-size: 50px">Eventize!</a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li> 
       <%
@@ -83,10 +95,9 @@ background-y-position: top;
         //resp.getWriter().println("Welcome, " + user.getNickname());
       %>
       </li>
-        <li><a href="homepage.jsp"><i class="material-icons left">note_add</i>Create event</a></li>
-        <li><a href="view.jsp"><i class="material-icons left">visibility</i>View events</a></li>
-        <li><a href="story.jsp"><i class="material-icons left">class</i>Write a Story</a></li>
-        <li><a href="viewstory.jsp"><i class="material-icons left">class</i>View Stories</a></li>
+        <li><a href="#!" class="dropdown-button" data-activates="dropdown1"><i class="material-icons left">note_add</i>Events<i class="material-icons right">arrow_drop_down</i></a></li>
+        <li><a href="#!" class="dropdown-button" data-activates="dropdown2"><i class="material-icons left">class</i>Story<i class="material-icons right">arrow_drop_down</i></a></li>
+        
         <%
         
                            if(user==null)
@@ -139,7 +150,7 @@ Footer
 
 -->
 
-<footer class="page-footer cyan darken-4 down">
+<footer class="page-footer cyan darken-4">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -149,10 +160,15 @@ Footer
               <div class="col l4 offset-l2 s12 right">
                 <h5 class="grey-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="homepage.jsp">Create</a></li>
-                  <li><a class="grey-text text-lighten-3" href="view.jsp">View</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Events</a></li>
-                  <li><a class="grey-text text-lighten-3" href="#!">Signout</a></li>
+                  <li><a class="grey-text text-lighten-3" href="homepage.jsp">Create events</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="view.jsp">View events</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="myevent.jsp">My events</a>
+                  </li>
+                  <li><a class="grey-text text-lighten-3" href="story.jsp">Create stories</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="viewstory.jsp">View stories</a>&nbsp;
+                  <a class="grey-text text-lighten-3" href="mystory.jsp">My stories</a>
+                  </li>
+                  
                 </ul>
               </div>
             </div>
