@@ -80,7 +80,7 @@ public class EventsResource {
 				event.setCreaterRole((String)eventsEntity.getProperty("createrRole"));	
 				//event.setTId((String)eventsEntity.getProperty("TId"));
 				event.setOwnerId((String)eventsEntity.getProperty("ownerId"));
-
+				event.setId(KeyFactory.keyToString(eventsEntity.getKey()));
 				
 
 				events.add(event);
@@ -153,6 +153,7 @@ public class EventsResource {
 		eventsEntity.setProperty("createrEmail", events.getCreaterEmail());
 		eventsEntity.setProperty("createrRole", events.getCreaterRole());	
 		//eventsEntity.setProperty("TId", events.getTId());	
+		if(userService.getCurrentUser()!=null)
 		eventsEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());		
 		eventsEntity.setProperty("id",events.getId());
 		datastore.put(eventsEntity);

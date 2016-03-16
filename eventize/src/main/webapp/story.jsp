@@ -184,8 +184,9 @@ Footer
           storiesData["title"] = $('#title')[0].value;
           storiesData["about"] = $('#about')[0].value;          
           storiesData["tale"] = $('#tale')[0].value;
-          storiesData["id"] = id++;
           var id = 1;
+          storiesData["id"] = id++;
+          
     
           
           $.ajax({
@@ -220,6 +221,7 @@ Footer
               var title=myStories["title"];
               var about=myStories["about"];
               var tale=myStories["tale"];
+              var id=myStories["id"];
             }
           }
         });

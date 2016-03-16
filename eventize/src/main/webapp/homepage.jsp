@@ -417,8 +417,8 @@ Footer
           eventsData["createrRole"] = $('#createrRole')[0].value; 
 
          
-          var id = 1; 
-          eventsData["id"] = id++;
+          
+          eventsData["id"] = 6;
           
                  
           

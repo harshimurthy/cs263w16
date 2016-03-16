@@ -74,12 +74,9 @@ public class StoriesResource {
 					story.setTitle((String)storiesEntity.getProperty("title"));
 					story.setAbout((String)storiesEntity.getProperty("about"));
 					story.setTale((String)storiesEntity.getProperty("tale"));	
+					story.setId(KeyFactory.keyToString(storiesEntity.getKey()));
 
-					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));
-
-
-
-								
+					story.setOwnerId((String)storiesEntity.getProperty("ownerId"));								
 					stories.add(story);
 				}
 				syncCache.put(CACHE_KEY,stories,Expiration.byDeltaSeconds(30));
@@ -140,7 +137,8 @@ public class StoriesResource {
 		storiesEntity.setProperty("title", stories.getTitle());
 		storiesEntity.setProperty("about", stories.getAbout());
 		storiesEntity.setProperty("tale", stories.getTale());
-		storiesEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());		
+		if(userService.getCurrentUser()!=null)
+			storiesEntity.setProperty("ownerId", userService.getCurrentUser().getUserId());		
 		storiesEntity.setProperty("id",stories.getId());	
 		datastore.put(storiesEntity);
 		syncCache.put(CACHE_KEY,stories);
