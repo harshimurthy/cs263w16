@@ -1,0 +1,30 @@
+Devserver:
+
+
+(Stories POST)
+curl -H "Content-Type: application/json" -X POST -d '{"title":"story","about":"experience at UCSB","tale":"UCSB is a great place to be","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnIUCxIHU1RPUklFUxiAgICAgICwCQw"}' http://localhost:8080/rest/stories
+
+curl -H "Content-Type: application/json" -X POST -d '{"title":"story","about":"experience at UCSB","tale":"UCSB is a great place to be","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnIUCxIHU1RPUklFUxiAgICAgICwCQw"}' http://localhost:8080/rest/stories/MemcachePost
+
+(Stories GET)
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rest/stories
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rest/stories/MemcacheGet
+
+
+(Stories DELETE)
+curl -X DELETE http://localhost:8080/rest/stories/agtldmVudHMtMjAxNnIUCxIHU1RPUklFUxiAgICAgIDQCQw
+
+(Events POST)
+curl -H "Content-Type: application/json" -X POST -d '{"eventName":"Turing award winner talk","eventTagline":"All about cryptography","eventDate":"03/28/2016","eventTime":"3:40uration":"1.5 Hours","eventType":"conference","eventHost":"official","purpose":"educational","department":"CMPSC","capacity":"400","location":"Corwin Pavillion","description":"Renowned Speaker ","createrName":"Adam","createrEmail":"adam@gmail.com","createrRole":"Student","ownerId":"121721519820989187972","id":"agtldmVudHMtMjAxNnITCxIGRVZFTlRTGICAgICAgIgKDA"}' http://localhost:8080/rest/events
+
+(Events GET)
+
+curl -i -H "Accept: application/json" -H "Content-Type: application/json" -X GET http://localhost:8080/rest/events
+
+
+(Events DELETE)
+curl -X DELETE http://localhost:8080/rest/events/agtldmVudHMtMjAxNnITCxIGRVZFTlRTGICAgICAgLAIDA
+
+
