@@ -29,8 +29,4 @@ The application will include three main features for each of the task involved.
 ###Developer-Harshitha Chidananda 
 ![Harshitha Chidananda](calsync/src/main/webapp/images/chidanandamurthyharshitha.jpg)
 
----
-Required Documents
 
-
-[ Readme.md markdown documentation https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
